@@ -1,0 +1,81 @@
+.showToLeft{
+    animation: showToLeft 2s;
+    animation-fill-mode: forwards;
+  }
+  .hideToRight{
+    animation: hideToRight 2s;
+    animation-fill-mode: forwards;
+  }
+  .showToRight{
+    animation: showToRight 2s;
+    animation-fill-mode: forwards;
+  }
+  .hideToLeft{
+    animation: hideToLeft 2s;
+    animation-fill-mode: forwards;
+  }
+  .showToScale{
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+
+
+
+@keyframes startShow {
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes showToLeft {
+    0%{
+        opacity: 0;
+        transform: translate(-100%, -36%) scale(0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0%, -36%) scale(1);
+    }
+}
+@keyframes hideToRight {
+    0%{
+        opacity: 1;
+        transform: translate(0%, -36%) scale(1);
+    }
+    99%{
+        opacity: 0;
+        transform: translate(100%, -36%) scale(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate(-200%, -36%) scale(0);
+    }
+}
+@keyframes showToRight {
+    0%{
+        opacity: 0;
+        transform: translate(100%) scale(0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0%) scale(1);
+    }
+}
+@keyframes hideToLeft {
+    0%{
+        opacity: 1;
+        transform: translate(0%) scale(1);
+    }
+    99%{
+        opacity: 0;
+        transform: translate(-100%) scale(0);
+    }
+    100%{
+        opacity: 0;
+        transform: translate(200%) scale(0);
+    }
+}

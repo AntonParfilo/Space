@@ -1,0 +1,29 @@
+@import "./adaptiveValue.scss";
+@media(max-width: 800px){
+    .burger{
+        display: block;
+    }
+    body{
+        background: url("../public/img/background-home-mobile.jpg") no-repeat center center !important;
+        background-size: cover !important;
+    }
+    header{
+        .header__border, .header__menu{
+            display: none;
+        }
+    }
+    .main{
+        flex-direction: column;
+        .main__lc, .main__rc{
+            width: 100% !important;
+        }
+        .main__lc{
+            h3{
+                @include adaptiveValue("font-size", 28, 19, 450, 320);
+            }
+            h1{
+                @include adaptiveValue("font-size", 126, 90, 600, 320);
+            }
+        }
+    }
+}

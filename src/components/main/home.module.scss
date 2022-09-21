@@ -1,0 +1,145 @@
+@import "/src/adaptiveValue.scss";
+@import "/src/animation.scss";
+
+
+.main {
+    top: 0 !important;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url("../../img/background-home-desktop.jpg") no-repeat top center;
+    background-size: cover;
+    position: fixed;
+    .main__lc {
+      animation: startShow 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 0.5s;
+      transform: scale(0);
+      opacity: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      h3 {
+        font-size: 28px;
+        @include adaptiveValue("font-size", 28, 26, 860, 800);
+        font-weight: normal;
+        line-height: 0px;
+        opacity: 0.5;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: "Bellefair", serif;
+      }
+      h1 {
+        font-size: 126px;
+        padding-bottom: 1rem;
+        color: #fff;
+        margin: 0;
+        font-family: "Bellefair", sans-serif;
+        font-weight: normal;
+      }
+      p {
+        max-width: 424px;
+        color: #fff;
+        line-height: 30px;
+      }
+    }
+    .main__rc {
+      animation: startShow 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 0.5s;
+      transform: scale(0);
+      opacity: 0;
+      position: relative;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      .main__rc_bg {
+        z-index: 5;
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+        span {
+          opacity: 0.5;
+          text-decoration: none;
+          color: #000;
+          font-size: 2rem;
+          transition: 0.5s;
+          font-family: "Bellefair", serif;
+         
+        }
+        &:hover {
+          cursor: pointer;
+          width: 180px;
+          height: 180px;
+        }
+        &:hover ~ .main__rc_bg_hover {
+          cursor: pointer;
+          width: 300px;
+          height: 300px;
+        }
+      }
+      .main__rc_bg_hover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0px;
+        height: 0px;
+        transition: 0.5s;
+        background-color: #fff;
+        filter: blur(1px);
+        opacity: 0.4;
+        border-radius: 50%;
+      }
+    }
+  }
+  .home{
+    display: flex;
+  }
+  
+@media(max-width: 800px){
+    .main{
+      background: url("../../img/background-home-mobile.jpg") no-repeat top center ;
+      background-size: cover;
+    }  
+    .home{
+        margin-top: 70px;
+        flex-direction: column;
+        .main__lc, .main__rc{
+            width: 100% !important;
+        }
+        .main__lc{
+            h3{
+                @include adaptiveValue("font-size", 28, 19, 450, 320);
+            }
+            h1{
+                padding: 0;
+                @include adaptiveValue("font-size", 126, 90, 600, 320);
+            }
+            p{
+              margin: 0;
+            }
+        }
+        .main__rc{
+          padding-top: 30px;
+          justify-content: flex-start;
+          .main__rc_bg_hover {
+            top: 120px;
+          }
+        }
+    }
+}

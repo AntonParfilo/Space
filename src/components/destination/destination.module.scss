@@ -1,0 +1,217 @@
+@import "/src/adaptiveValue.scss";
+@import "/src/animation.scss";
+
+.destination {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: url("../../img/background-destination-desktop.468b922c69bf5499b4bc.jpg")
+    no-repeat top center;
+  background-size: cover;
+  .destination__lc {
+    position: relative;
+    animation: startShow 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    transform: scale(0);
+    opacity: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      top: 70px;
+      position: absolute;
+      color: #fff;
+      text-transform: uppercase;
+      font-family: "Barlow", sans-serif;
+      font-weight: normal;
+    }
+    img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-36%);
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+  .destination__rc {
+    animation: startShow 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    transform: scale(0);
+    opacity: 0;
+    padding-top: 110px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      li {
+        list-style-type: none;
+        margin-right: 20px;
+        color: #ccc;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: -5%;
+          width: 110%;
+          height: 2px;
+          background-color: #fff;
+          transition: 0.1s;
+          opacity: 0;
+        }
+        &:hover {
+          color: #fff;
+          cursor: pointer;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: -5%;
+            width: 110%;
+            height: 2px;
+            background-color: #fff;
+            opacity: 1;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+    .planet_name {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      h2 {
+        width: 100%;
+        transform: translate(100%) scale(0);
+        opacity: 0;
+        position: absolute;
+        text-align: center;
+        font-size: 100px;
+        color: #fff;
+        line-height: 0px;
+        font-family: "Bellefair", sans-serif;
+        font-weight: normal;
+      }
+    }
+    .planet_desc_wrap {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      .planet_desc {
+        transition: 2s;
+        opacity: 0;
+        transform: scale(0);
+        position: absolute;
+        .destination__ch {
+          width: 100%;
+          padding-top: 40px;
+          border-top: 1px solid #ccc;
+          display: flex;
+          justify-content: space-around;
+          div {
+            width: 50%;
+            text-align: center;
+            span {
+              @include adaptiveValue("font-size", 14, 13, 350, 320);
+              letter-spacing: 2.36px;
+              text-transform: uppercase;
+            }
+            p {
+              max-width: 100% !important;
+              margin-top: 6px;
+              font-size: 28px;
+              font-family: "Bellefair";
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+  .destination__content {
+    display: flex;
+  }
+}
+
+@media (max-width: 800px) {
+  .destination__content {
+    flex-direction: column;
+    margin-top: 50px;
+    .destination__lc {
+      height: 40%;
+      width: 100%;
+      h2 {
+        top: -10px;
+        @include adaptiveValue("font-size", 18, 17, 400, 320);
+      }
+      img {
+        height: 85%;
+        top: 45%;
+      }
+    }
+    .destination__rc {
+      width: 100%;
+      padding-top: 20px;
+      height: 55%;
+      .planet_name {
+        h2 {
+          @include adaptiveValue("font-size", 80, 70, 800, 320);
+        }
+      }
+      p {
+        max-width: 70% !important;
+        margin-top: 0;
+      }
+      .destination__ch {
+        margin-top: 10px;
+        padding-top: 15px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .destination__content {
+    .destination__rc {
+      .planet_name{
+        height: 130px;
+      }
+      .planet_desc {
+        p {
+          max-width: 100% !important;
+          font-size: 16px;
+        }
+      }
+      .destination__ch {
+        p {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 980px) {
+  .destination__content {
+    .destination__rc {
+      p {
+        max-width: 80%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+

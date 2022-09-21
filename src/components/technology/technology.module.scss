@@ -1,0 +1,181 @@
+@import "/src/adaptiveValue.scss";
+@import "/src/animation.scss";
+
+.tech {
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 0;
+  background: url("../../img/background-technology-desktop.b7b589b3c0c5ef0811d4.jpg")
+    top center no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  .tech__container {
+    height: 70%;
+  }
+  .tech__header {
+    h3 {
+      color: #fff;
+      text-transform: uppercase;
+      font-family: "Barlow", sans-serif;
+      font-weight: normal;
+    }
+  }
+  .tech__content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    .tech__nav {
+      width: 20%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      button {
+        transition: 0.5s;
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        border: 1px #fff solid;
+        background: none;
+        color: #fff;
+        margin-top: 25px;
+        font-size: 25px;
+        font-family: "Barlow", sans-serif;
+        font-weight: bold;
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(255, 255, 255, 0.5);
+          color: #000000;
+        }
+      }
+    }
+    .tech__lc_wrapper {
+      display: flex;
+      width: 40%;
+      position: relative;
+      .tech__lc {
+        width: 100%;
+        height: 100%;
+        padding-right: 15px;
+        z-index: 50;
+        position: absolute;
+        top: 36%;
+        transform: translate(-100%) scale(0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1 {
+          font-family: "Bellefair", serif;
+          font-size: 56px;
+          text-transform: uppercase;
+        }
+        p {
+          width: 70%;
+        }
+      }
+    }
+    .tech__rc {
+      width: 40%;
+      overflow: hidden;
+      position: relative;
+      .images_landscape {
+        display: none;
+      }
+      img {
+        transition: 2s;
+        transform: scale(0);
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-position: bottom;
+        object-fit: cover;
+      }
+    }
+  }
+}
+.active_but {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+@media (max-width: 800px) {
+  .tech {
+    padding-top: 40px;
+    .tech__container {
+      height: 100%;
+
+    }
+    .tech__header {
+      h3 {
+        text-align: center;
+      }
+    }
+    .tech__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .tech__nav {
+        width: 100%;
+        height: fit-content;
+        order: 2;
+        flex-direction: row;
+        button {
+          margin: 20px 15px 0;
+        }
+      }
+      .tech__lc_wrapper {
+        width: 100%;
+        height: 100%;
+        order: 3;
+        .tech__lc {
+          order: 3;
+          width: 100%;
+          justify-content: flex-start;
+          p {
+            width: 100%;
+            text-align: center;
+          }
+          h1 {
+            @include adaptiveValue("font-size", 56, 32, 550, 320);
+            font-weight: normal;
+            text-align: center;
+            margin: 0;
+          }
+        }
+      }
+      .tech__rc {
+        height: 300px;
+        order: 1;
+        width: 100%;
+        overflow: visible;
+        .images_landscape {
+          display: block;
+        }
+        .images_portrait {
+          display: none;
+        }
+        img {
+          position: absolute;
+          left: -10%;
+          width: 120%;
+          object-position: center;
+        }
+      }
+    }
+  }
+}
+@media (max-height: 675px) {
+  .tech {
+  }
+  .tech__lc {
+    p {
+      font-size: 16px;
+    }
+  }
+}
