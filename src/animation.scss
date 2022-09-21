@@ -34,48 +34,78 @@
 @keyframes showToLeft {
     0%{
         opacity: 0;
-        transform: translate(-100%, -36%) scale(0);
+        transform: translate(-100%) scale(0);
+        -o-transform: translate(-100%) scale(0);
+        -webkit-transform: translate(-100%) scale(0);
+        -moz-transform: translate(-100%) scale(0);
     }
     100%{
         opacity: 1;
-        transform: translate(0%, -36%) scale(1);
+        transform: translate(0%) scale(1);
+        -webkit-transform: translate(0%) scale(1);
+        -moz-transform: translate(0%) scale(1);
+        -o-transform: translate(0%) scale(1);
     }
 }
 @keyframes hideToRight {
     0%{
         opacity: 1;
-        transform: translate(0%, -36%) scale(1);
+        transform: translate(0%) scale(1);
+        -webkit-transform: translate(0%) scale(1);
+        -moz-transform: translate(0%) scale(1);
+        -o-transform: translate(0%) scale(1);
     }
     99%{
         opacity: 0;
-        transform: translate(100%, -36%) scale(0);
+        transform: translate(100%) scale(0);
+        -webkit-transform: translate(100%) scale(0);
+        -moz-transform: translate(100%) scale(0);
+        -o-transform: translate(100%) scale(0);
     }
     100%{
         opacity: 0;
-        transform: translate(-200%, -36%) scale(0);
+        transform: translate(-200%) scale(0);
+        -webkit-transform: translate(-200%) scale(0);
+        -moz-transform: translate(-200%) scale(0);
+        -o-transform: translate(-200%) scale(0);
     }
 }
 @keyframes showToRight {
     0%{
         opacity: 0;
         transform: translate(100%) scale(0);
+        -webkit-transform: translate(100%) scale(0);
+        -moz-transform: translate(100%) scale(0);
+        -o-transform: translate(100%) scale(0);
     }
     100%{
         opacity: 1;
         transform: translate(0%) scale(1);
+        -webkit-transform: translate(0%) scale(1);
+        -moz-transform: translate(0%) scale(1);
+        -o-transform: translate(0%) scale(1);
     }
 }
 @keyframes hideToLeft {
     0%{
         opacity: 1;
         transform: translate(0%) scale(1);
+        -webkit-transform: translate(0%) scale(1);
+        -moz-transform: translate(0%) scale(1);
+        -o-transform: translate(0%) scale(1);
     }
     99%{
         opacity: 0;
         transform: translate(-100%) scale(0);
+        -webkit-transform: translate(-100%) scale(0);
+        -moz-transform: translate(-100%) scale(0);
+        -o-transform: translate(-100%) scale(0);
     }
     100%{
         opacity: 0;
         transform: translate(200%) scale(0);
+        -webkit-transform: translate(200%) scale(0);
+        -moz-transform: translate(200%) scale(0);
+        -o-transform: translate(200%) scale(0);
     }
 }
