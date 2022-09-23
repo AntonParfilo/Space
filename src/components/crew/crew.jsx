@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import s from "./crew.module.scss";
 import { useDispatch } from "react-redux";
 import { setMenu } from "../../store/menuSlice";
@@ -8,30 +8,34 @@ import victor from "../../img/image-victor-glover.png";
 import ann from "../../img/image-anousheh-ansari.png";
 
 const Crew = () => {
-  const caroulselButtons = document.getElementsByClassName("carousel_button");
-  const blocks = document.getElementsByClassName(s.crew__lc_content);
+  const carouselButtons = useRef();
+  const crew_content = useRef();
+  const crew_images = useRef();
+
   const [carousel, setCarousel] = useState("douglas");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setMenu("CREW"));
-    document
-      .getElementsByClassName("douglas")[0]
-      .classList.add(s.active_button);
-      document.getElementsByClassName("douglas_content")[0].classList.add("showToScale");
-      document.getElementsByClassName("douglas_image")[0].classList.add("showToScale");
+    carouselButtons.current.children[0].classList.add(s.active_button);
+    crew_content.current.children[0].classList.add("showToScale");
+    crew_images.current.children[0].classList.add("showToScale");
   }, []);
 
   function selectCarousel(el) {
+
+    //set local state button
     setCarousel(el.target.id);
-    for (let but of caroulselButtons) {
+    //animation buttons
+    for (let but of carouselButtons.current.children) {
       but.classList.remove(s.active_button);
     }
     el.target.classList.add(s.active_button);
-    document.getElementsByClassName(carousel+"_content")[0].classList.remove("showToScale");
-    document.getElementsByClassName(el.target.id+"_content")[0].classList.add("showToScale");
-    document.getElementsByClassName(carousel+"_image")[0].classList.remove("showToScale");
-    document.getElementsByClassName(el.target.id+"_image")[0].classList.add("showToScale");
-    
+    //animation text
+    crew_content.current.querySelector("."+carousel+"_content").classList.remove("showToScale");
+    crew_content.current.querySelector("."+el.target.id+"_content").classList.add("showToScale");
+    //animation images
+    crew_images.current.querySelector("."+carousel+"_image").classList.remove("showToScale");
+    crew_images.current.querySelector("."+el.target.id+"_image").classList.add("showToScale");
   }
 
   return (
@@ -39,6 +43,7 @@ const Crew = () => {
       <div className={`${s.container} container`}>
         <div className={s.crew__lc}>
           <h2>Meet your crew</h2>
+          <div ref={crew_content}>
           <div className={`${s.crew__lc_content} douglas_content`}>
             <h3>Commander</h3>
             <h1>Douglas Hurley</h1>
@@ -78,7 +83,8 @@ const Crew = () => {
               Iranian in space.
             </p>
           </div>
-          <div className={s.crew__lc_buttons}>
+          </div>
+          <div className={s.crew__lc_buttons} ref={carouselButtons}>
             <span
                 id="douglas"
               className="carousel_button douglas"
@@ -101,7 +107,7 @@ const Crew = () => {
             ></span>
           </div>
         </div>
-        <div className={s.crew__rc}>
+        <div className={s.crew__rc} ref={crew_images}>
           <img src={douglas} className="douglas_image" alt="douglas"/>
           <img src={mark} className="mark_image" alt="mark"/>
           <img src={victor} className="victor_image" alt="vitya"/>

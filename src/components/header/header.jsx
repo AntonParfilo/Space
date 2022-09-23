@@ -7,16 +7,16 @@ import logo from "../../img/logo.svg";
 const Header = () => {
 
   // Menu
-  const menu_items = document.getElementsByClassName("header__menu_item");
+  const menu_items = useRef();
   let stateMenu = useSelector((state) => state.menu);
   useEffect(() => {
-    for(let el of menu_items){
+    for(let el of menu_items.current.children){
       if (el.innerHTML === stateMenu) el.classList.add("active_menu");
       else el.classList.remove("active_menu");
     }
   }, []);
   useEffect(() => {
-    for(let el of menu_items){
+    for(let el of menu_items.current.children){
       if (el.innerHTML === stateMenu) el.classList.add("active_menu");
       else el.classList.remove("active_menu");
     }
@@ -57,7 +57,7 @@ const Header = () => {
         </div>
         <div className={s.header__border}></div>
 
-        <nav className={s.header__menu}>
+        <nav className={s.header__menu} ref={menu_items}>
           <NavLink className="header__menu_item" to="/">
             HOME
           </NavLink>

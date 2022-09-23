@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import s from "./destination.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenu } from "../../store/menuSlice";
@@ -10,23 +10,26 @@ import europa from "../../img/image-europa.png";
 
 const Destination = () => {
   const dispatch = useDispatch();
+  const menu_items = useRef();
+  const images = useRef();
+  const titles = useRef();
+  const desc = useRef();
 
-  const menu_items = document.getElementsByClassName("destination__menu_item");
   let stateMenu = useSelector((state) => state.destination);
   useEffect(() => {
     dispatch(setMenu("DESTINATION"));
     dispatch(setMenuDestination("MOON"));
     // Menu
-    for (let el of menu_items) {
+    for (let el of menu_items.current.children) {
       if (el.innerHTML === stateMenu) el.classList.add("active_menu");
       else el.classList.remove("active_menu");
-      document.getElementById("MOON").classList.add(s.showToLeft);
-      document.getElementById("MOON_title").classList.add(s.showToRight);
-      document.getElementById("MOON_desc").classList.add(s.showToScale);
+      images.current.querySelector("#MOON").classList.add(s.showToLeft);
+      titles.current.querySelector("#MOON_title").classList.add(s.showToRight);
+      desc.current.querySelector("#MOON_desc").classList.add(s.showToScale);
     }
   }, []);
   useEffect(() => {
-    for (let el of menu_items) {
+    for (let el of menu_items.current.children) {
       if (el.innerHTML === stateMenu) el.classList.add("active_menu");
       else el.classList.remove("active_menu");
     }
@@ -34,29 +37,23 @@ const Destination = () => {
 
   const setPlanet = (el) => {
     // aniamation planets
-    document.getElementById(stateMenu).classList.remove(s.showToLeft);
-    document.getElementById(stateMenu).classList.add(s.hideToRight);
+    images.current.querySelector("#"+stateMenu).classList.remove(s.showToLeft);
+    images.current.querySelector("#"+stateMenu).classList.add(s.hideToRight);
     setTimeout(() => {
-      document.getElementById(stateMenu).classList.remove(s.hideToRight);
+      images.current.querySelector("#"+stateMenu).classList.remove(s.hideToRight);
     }, 2000);
-    document.getElementById(el.target.innerHTML).classList.add(s.showToLeft);
+    images.current.querySelector("#"+el.target.innerHTML).classList.add(s.showToLeft);
     // animation planet name
-    document
-      .getElementById(stateMenu + "_title")
-      .classList.remove(s.showToRight);
-    document.getElementById(stateMenu + "_title").classList.add(s.hideToLeft);
+    titles.current.querySelector("#"+stateMenu + "_title").classList.remove(s.showToRight);
+    titles.current.querySelector("#"+stateMenu + "_title").classList.add(s.hideToLeft);
     setTimeout(() => {
-      document
-        .getElementById(stateMenu + "_title")
-        .classList.remove(s.hideToLeft);
+      titles.current.querySelector("#"+stateMenu + "_title").classList.remove(s.hideToLeft);
     }, 2000);
-    document
-      .getElementById(el.target.innerHTML + "_title")
-      .classList.add(s.showToRight);
+    titles.current.querySelector("#"+el.target.innerHTML + "_title").classList.add(s.showToRight);
     // animation planet description
-    document.getElementById(stateMenu+"_desc").classList.remove(s.showToScale);
+    desc.current.querySelector("#"+stateMenu+"_desc").classList.remove(s.showToScale);
     setTimeout(()=>{
-      document.getElementById(el.target.innerHTML+"_desc").classList.add(s.showToScale);
+      desc.current.querySelector("#"+el.target.innerHTML+"_desc").classList.add(s.showToScale);
     },500);
 
     dispatch(setMenuDestination(el.target.innerHTML));
@@ -65,7 +62,7 @@ const Destination = () => {
   return (
     <section className={`${s.destination}`}>
       <div className={`${s.destination__content} container`}>
-        <div className={s.destination__lc}>
+        <div className={s.destination__lc} ref={images}>
           <h2>Pick your destination</h2>
           <img
             src={moon}
@@ -94,7 +91,7 @@ const Destination = () => {
         </div>
         <div className={s.destination__rc}>
           <div className={s.destination__menu}>
-            <ul>
+            <ul ref={menu_items}>
               <li className="destination__menu_item" onClick={setPlanet}>
                 MOON
               </li>
@@ -109,13 +106,13 @@ const Destination = () => {
               </li>
             </ul>
           </div>
-          <div className={s.planet_name}>
+          <div className={s.planet_name} ref={titles}>
             <h2 id="MOON_title">MOON</h2>
             <h2 id="MARS_title">MARS</h2>
             <h2 id="EUROPA_title">EUROPA</h2>
             <h2 id="TITAN_title">TITAN</h2>
           </div>
-          <div className={s.planet_desc_wrap}>
+          <div className={s.planet_desc_wrap} ref={desc}>
             <div className={s.planet_desc} id="MOON_desc">
               <p>
                 See our planet as you’ve never seen it before. A perfect

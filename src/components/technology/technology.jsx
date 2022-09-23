@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import s from "./technology.module.scss";
 import { useDispatch } from "react-redux";
 import { setMenu } from "../../store/menuSlice";
@@ -12,26 +12,31 @@ import space_l from "../../img/image-space-capsule-landscape.jpg";
 const Technology = () => {
   const dispatch = useDispatch();
   const [tech, setTech] = useState("launch");
-  const buttons = document.getElementsByClassName("tech_but");
+  const buttons = useRef();
+  const images = useRef();
+  const contents = useRef();
   useEffect(() => {
     dispatch(setMenu("TECHNOLOGY"));
-    document.getElementById(tech).classList.add(s.active_but);
+    buttons.current.children[0].classList.add(s.active_but);
   }, []);
 
   function setNav(el) {
-    for (let but of buttons) {
+    for (let but of buttons.current.children) {
       but.classList.remove(s.active_but);
     }
-    document.getElementById(el.target.id).classList.add(s.active_but);
-    document.getElementById(tech + "_content").classList.add("hideToRight");
-    document.getElementById(el.target.id + "_content").classList.add("showToLeft");
+    el.target.classList.add(s.active_but);
+    // animation text
+    contents.current.querySelector("#"+tech+"_content").classList.add("hideToRight");
+    contents.current.querySelector("#"+el.target.id+"_content").classList.add("showToLeft");
     setTimeout(() => {
-      document.getElementById(el.target.id + "_content").classList.remove("hideToRight");
+      contents.current.querySelector("#"+el.target.id+"_content").classList.remove("hideToRight");
     }, 100);
-    document.getElementById(tech + "_image").classList.remove("showToScale");
-    document.getElementById(el.target.id + "_image").classList.add("showToScale");
-    document.getElementById(tech + "_image_landscape").classList.remove("showToScale");
-    document.getElementById(el.target.id + "_image_landscape").classList.add("showToScale");
+    //animation images
+    images.current.querySelector("#"+tech+"_image").classList.remove("showToScale");
+    images.current.querySelector("#"+el.target.id+"_image").classList.add("showToScale");
+    images.current.querySelector("#"+tech+"_image_landscape").classList.remove("showToScale");
+    images.current.querySelector("#"+el.target.id+"_image_landscape").classList.add("showToScale");
+    //set new local state
     setTech(el.target.id);
   }
 
@@ -42,7 +47,7 @@ const Technology = () => {
           <h3>SPACE LAUNCH 101</h3>
         </div>
         <div className={s.tech__content}>
-          <div className={s.tech__nav}>
+          <div className={s.tech__nav} ref={buttons}>
             <button className="tech_but" id="launch" onClick={setNav}>
               1
             </button>
@@ -53,7 +58,7 @@ const Technology = () => {
               3
             </button>
           </div>
-          <div className={s.tech__lc_wrapper}>
+          <div className={s.tech__lc_wrapper} ref={contents}>
             <div className={`${s.tech__lc} showToLeft`} id="launch_content">
               <p>THE TERMINOLOGY…</p>
               <h1>Launch vehicle</h1>
@@ -88,7 +93,7 @@ const Technology = () => {
               </p>
             </div>
           </div>
-          <div className={s.tech__rc}>
+          <div className={s.tech__rc} ref={images}>
             <div className={s.images_portrait}>
               <img
                 className="showToScale"
